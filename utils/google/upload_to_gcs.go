@@ -11,11 +11,11 @@ import (
 	"google.golang.org/api/option"
 )
 
-var upload *ClientUploader
+var Upload *ClientUploader
 
 const (
-	ProjectID  = "octopuslab-365307" // Fill in with your project ID
-	BucketName = "payroll_anggi"     // Fill in with your bucket name
+	ProjectID  = "octopuslab-365307"
+	BucketName = "payroll_anggi"
 )
 
 const MaxFileSize = 5 * 1024 * 1024 // 5 MB as an example limit
@@ -29,26 +29,24 @@ type ClientUploader struct {
 
 func init() {
 	ctx := context.Background()
-	client, err := storage.NewClient(ctx, option.WithCredentialsFile("key.json"))
+	keyPath := "utils/google/key.json"
+	client, err := storage.NewClient(ctx, option.WithCredentialsFile(keyPath))
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
-	upload = &ClientUploader{
+	Upload = &ClientUploader{
 		cl:         client,
 		bucketName: BucketName,
 		projectID:  ProjectID,
-		uploadPath: "test/",
 	}
 	log.Println("init called")
 }
 
 func getFileSize(file multipart.File) (int64, error) {
-	// Seek to the end of the file to get its size
 	size, err := file.Seek(0, io.SeekEnd)
 	if err != nil {
 		return 0, err
 	}
-	// Seek back to the beginning of the file
 	_, err = file.Seek(0, io.SeekStart)
 	if err != nil {
 		return 0, err
@@ -73,5 +71,8 @@ func (c *ClientUploader) UploadFile(ctx context.Context, file multipart.File, ob
 	if err := wc.Close(); err != nil {
 		return "", fmt.Errorf("Writer.Close: %v", err)
 	}
-	return "", nil
+
+	uploadedFileURL := fmt.Sprintf("https://storage.googleapis.com/%s/%s%s", c.bucketName, c.uploadPath, object)
+
+	return uploadedFileURL, nil
 }
