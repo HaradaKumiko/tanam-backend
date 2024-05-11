@@ -25,14 +25,14 @@ jobs:
             git pull origin main
             # Copy .env.local to .env and replace values with secrets
             cp .env.local .env
-            sed -i "s/DB_HOST=.*/DB_HOST=${{secrets.DB_HOST}}/" .env
-            sed -i "s/DB_PORT=.*/DB_PORT=${{secrets.DB_PORT}}/" .env
-            sed -i "s/DB_USERNAME=.*/DB_USERNAME=${{secrets.USERNAME}}/" .env
-            sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=${{secrets.DB_PASSWORD}}/" .env
-            sed -i "s/DB_NAME=.*/DB_NAME=${{secrets.DB_NAME}}/" .env
-            sed -i "s/CLIENT_KEY=.*/CLIENT_KEY=${{secrets.CLIENT_KEY}}/" .env
-            sed -i "s/SERVER_KEY=.*/SERVER_KEY=${{secrets.SERVER_KEY}}/" .env
-            sed -i "s/IRIS_KEY=.*/IRIS_KEY=${{secrets.IRIS_KEY}}/" .env
-            sed -i "s/MERCHANT_ID=.*/MERCHANT_ID=${{secrets.MERCHANT_ID}}/" .env
+            sed -i "s/DB_HOST=.*/DB_HOST=\"${{secrets.HOST}}\"/" .env
+            sed -i "s/DB_PORT=.*/DB_PORT=\"${{secrets.DB_PORT}}\"/" .env
+            sed -i "s/DB_USERNAME=.*/DB_USERNAME=\"${{secrets.USERNAME}}\"/" .env
+            sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=\"${{secrets.DB_PASSWORD}}\"/" .env
+            sed -i "s/DB_NAME=.*/DB_NAME=\"${{secrets.DB_NAME}}\"/" .env
+            sed -i "s/CLIENT_KEY=.*/CLIENT_KEY=\"${{secrets.CLIENT_KEY}}\"/" .env
+            sed -i "s/SERVER_KEY=.*/SERVER_KEY=\"${{secrets.SERVER_KEY}}\"/" .env
+            sed -i "s/IRIS_KEY=.*/IRIS_KEY=\"${{secrets.IRIS_KEY}}\"/" .env
+            sed -i "s/MERCHANT_ID=.*/MERCHANT_ID=\"${{secrets.MERCHANT_ID}}\"/" .env
             
             cat .env
