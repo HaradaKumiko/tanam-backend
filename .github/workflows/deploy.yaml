@@ -21,6 +21,8 @@ jobs:
           script: |
             
             cd /home/tanam-backend
+            git stash
+            git pull origin main
             # Copy .env.local to .env and replace values with secrets
             cp .env.local .env
             sed -i "s/DB_HOST=.*/DB_HOST=${{secrets.DB_HOST}}/" .env
