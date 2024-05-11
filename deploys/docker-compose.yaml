@@ -12,7 +12,6 @@ services:
     image: haradakumiko/tanam-backend:latest
     restart: always
     depends_on:
-       database:
-         condition: service_healthy
+       - database
     ports:
       - 1323:1323
