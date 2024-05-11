@@ -1,34 +1,18 @@
 services:
 
-  # appDb:
-  #   image: bitnami/mysql
-  #   restart: always
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: toor
-  #     MYSQL_DATABASE: alta
-  #   ports: 
-  #     - 3306:3306
-  #   volumes:
-  #     - './initdb:/docker-entrypoint-initdb.d'
-  #   healthcheck:
-  #     test: ["CMD", "mysql", "-u", "root",  "-ptoor", "-e", "show schemas"]
-  #     interval: 10s 
+  database:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=Alterra@miniPR0ject#@!
+      - MYSQL_DATABASE=tanam_backend
+    ports:
+      - 3306:3306
 
   app:
-    build: .
+    image: haradakumiko/tanam-backend:latest
     restart: always
-    # depends_on:
-    #   appDb:
-    #     condition: service_healthy
-    environment:
-      HTTP_PORT: 1323
-      # CONNECTION_STRING: root:toor@tcp(appDb:3306)/alta?charset=utf8&parseTime=True&loc=Local
-        # STORAGE: db
+    depends_on:
+       database:
+         condition: service_healthy
     ports:
       - 1323:1323
-
-  # adminer:  
-  #   image: adminer
-  #   restart: always
-  #   ports: # host:container
-  #     - 8081:8080

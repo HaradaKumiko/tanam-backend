@@ -1,38 +1,36 @@
-FROM golang:1.22-alpine AS builder
+# Use golang base image with specified version
+FROM golang:1.22.2-alpine3.19 AS build
 
-# Install git + SSL ca certificates.
-# Git is required for fetching the dependencies.
-# Ca-certificates is required to call HTTPS endpoints.
+# Set the working directory inside the container
+WORKDIR /app
 
-RUN apk update && \
-    apk add --no-cache git ca-certificates tzdata && update-ca-certificates
+# Copy go.mod and go.sum files to the container
+COPY go.mod .
+COPY go.sum .
 
-WORKDIR $GOPATH/src/compile/tanam-backend
+# Download dependencies
+RUN go mod download
+
+# Copy the rest of the application source code to the container
 COPY . .
 
-# Fetch dependencies.
-# RUN go get -d -v
-RUN go mod download
-RUN go mod verify
+# Copy the key.json file into the container
+COPY utils/google/key.json /app/utils/google/key.json
 
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -a -installsuffix cgo -o /go/bin/tanam-backend .
+# Build the Go app
+RUN go build -o main .
 
-#####################
-# MAKE SMALL BINARY #
-#####################
-FROM alpine:3.16
+# Start a new stage from scratch
+FROM alpine:3.19
 
-RUN apk update
+# Set the working directory inside the container
+WORKDIR /root
 
-# COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
-# COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+# Copy the compiled executable from the previous stage
+COPY --from=build /app/main .
 
-#Copy the executable.
-COPY --from=builder /go/bin/tanam-backend /go/bin/tanam-backend
+# Copy the key.json file into the container
+COPY --from=build /app/utils/google/key.json /root/utils/google/key.json
 
-
-ENTRYPOINT ["/go/bin/tanam-backend"]
-
-EXPOSE 1323
-
-#CMD ["./main"]
+# Command to run the executable
+CMD ["./main"]
