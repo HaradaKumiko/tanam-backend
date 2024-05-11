@@ -21,9 +21,7 @@ jobs:
           script: |
             
             cd /home/tanam-backend
-            git stash
             git pull origin main
-            # Copy .env.local to .env and replace values with secrets
             cp .env.local .env
             sed -i "s/DB_HOST=.*/DB_HOST=\"${{secrets.HOST}}\"/" .env
             sed -i "s/DB_PORT=.*/DB_PORT=\"${{secrets.DB_PORT}}\"/" .env
@@ -34,5 +32,12 @@ jobs:
             sed -i "s/SERVER_KEY=.*/SERVER_KEY=\"${{secrets.SERVER_KEY}}\"/" .env
             sed -i "s/IRIS_KEY=.*/IRIS_KEY=\"${{secrets.IRIS_KEY}}\"/" .env
             sed -i "s/MERCHANT_ID=.*/MERCHANT_ID=\"${{secrets.MERCHANT_ID}}\"/" .env
-            
-            cat .env
+            cd deploys
+            docker compose down
+            cd .. 
+            docker image rm puskomjar-backend-talenta:latest
+            docker volume prune
+            docker build -t puskomjar-backend-talenta:latest --no-cache -f deploys/Dockerfile . 
+            docker builder prune
+            cd deploys 
+            docker compose up -d

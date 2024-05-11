@@ -2,14 +2,15 @@ package main
 
 import (
 	"net/http"
+	"tanam-backend/database"
 	"tanam-backend/routes"
 
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
-	// database.InitDB()
-	// database.Migrate()
+	database.InitDB()
+	database.Migrate()
 
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
