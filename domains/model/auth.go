@@ -14,7 +14,7 @@ const (
 )
 
 type Auth struct {
-	AuthID    uuid.UUID `gorm:"type:varchar(100);"`
+	AuthID    uuid.UUID `gorm:"primaryKey;type:varchar(100);"`
 	Email     string    `gorm:"type:varchar(255);not null;unique"`
 	Password  string    `gorm:"type:varchar(255);not null"`
 	Profile   string    `gorm:"type:varchar(255);default:'https://avatars.githubusercontent.com/u/42530587'"`

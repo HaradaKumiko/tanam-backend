@@ -4,6 +4,7 @@ import (
 	"tanam-backend/database"
 	"tanam-backend/domains/model"
 	"tanam-backend/domains/web/auth"
+	"tanam-backend/entities"
 
 	"github.com/google/uuid"
 )
@@ -28,4 +29,12 @@ func (repo *BiodataRepository) CreateBiodata(request auth.RegisterRequest, authI
 	}
 
 	return nil
+}
+
+func (repo *BiodataRepository) FIndBiodataByAuthId(authId string) (entities.Biodata, error) {
+	var biodata entities.Biodata
+	if err := database.DB.Where("auth_id = ?", &authId).First(&biodata).Error; err != nil {
+		return biodata, err
+	}
+	return biodata, nil
 }

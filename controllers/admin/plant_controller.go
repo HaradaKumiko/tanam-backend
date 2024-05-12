@@ -33,7 +33,7 @@ func (controller *PlantController) GetAllPlantController(c echo.Context) error {
 		return c.JSON(http.StatusOK, response)
 	}
 
-	response := response.SuccessSingularFormatter("Data Semua Tanaman", plants)
+	response := response.SuccessPluralFormatter("Data Semua Tanaman", plants)
 	return c.JSON(http.StatusOK, response)
 }
 
@@ -123,4 +123,3 @@ func (controller *PlantController) DeletePlantByIdController(c echo.Context) err
 	response := response.SuccessSingularFormatter("Berhasil Hapus Data Tanaman", nil)
 	return c.JSON(http.StatusOK, response)
 }
-

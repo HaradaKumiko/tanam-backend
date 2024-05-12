@@ -34,7 +34,7 @@ func InitDB() {
 }
 
 func Migrate() {
-	models := []interface{}{&model.Plant{}, &model.Auth{}, &model.Biodata{}}
+	models := []interface{}{&model.Plant{}, &model.Auth{}, &model.Biodata{}, &model.Order{}}
 
 	err := DB.Migrator().DropTable(models...)
 	if err != nil {

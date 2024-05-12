@@ -19,7 +19,10 @@ func InitRoute(e *echo.Echo) {
 
 	authController := controllers.InitAuthController()
 	adminPlantController := admin.InitPlantController()
+	adminOrderController := admin.InitOrderController()
+
 	plantController := controllers.InitPlantController()
+	orderController := controllers.InitOrderController()
 
 	api := e.Group("/api")
 
@@ -38,4 +41,12 @@ func InitRoute(e *echo.Echo) {
 	admin.GET("/plant/:plantId", adminPlantController.GetPlantByPlantIdController)
 	admin.PUT("/plant/:plantId", adminPlantController.EditPlantByPlantIdController)
 	admin.DELETE("/plant/:plantId", adminPlantController.DeletePlantByIdController)
+
+	admin.GET("/orders", adminOrderController.GetAllOrderController)
+	admin.GET("/order/:orderId", adminOrderController.GetAllOrderController)
+
+	order := api.Group("", middlewares.JWTMiddleware)
+	order.GET("/order", orderController.CreateOrderController)
+	order.GET("/order/user", orderController.GetOrderDonorController)
+	order.GET("/order/:orderId", orderController.GetOrderByOrderIdController)
 }

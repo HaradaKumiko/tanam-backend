@@ -62,11 +62,9 @@ func (controller *PlantController) GetAllPlantController(c echo.Context) error {
 		return c.JSON(http.StatusOK, response)
 	}
 
-	response := response.SuccessSingularFormatter("Data Semua Tanaman", plants)
+	response := response.SuccessPluralFormatter("Data Semua Tanaman", plants)
 	return c.JSON(http.StatusOK, response)
 }
-
-
 
 func (controller *PlantController) GetPlantByPlantIdController(c echo.Context) error {
 	plantId := c.Param("plantId")
@@ -80,5 +78,3 @@ func (controller *PlantController) GetPlantByPlantIdController(c echo.Context) e
 	response := response.SuccessSingularFormatter("Data Tanaman", plant)
 	return c.JSON(http.StatusOK, response)
 }
-
-

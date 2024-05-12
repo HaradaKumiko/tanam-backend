@@ -7,7 +7,7 @@ import (
 )
 
 type Biodata struct {
-	BiodataID   uuid.UUID `gorm:"type:varchar(100);"`
+	BiodataID   uuid.UUID `gorm:"primaryKey;type:varchar(100);"`
 	AuthID      uuid.UUID `gorm:"type:varchar(100);nullable"`
 	Fullname    string    `gorm:"type:varchar(255);not null"`
 	PhoneNumber string    `gorm:"type:varchar(20);not null"`
