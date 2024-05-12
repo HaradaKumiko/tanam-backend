@@ -15,7 +15,7 @@ var Upload *ClientUploader
 
 const (
 	ProjectID  = "octopuslab-365307"
-	BucketName = "payroll_anggi"
+	BucketName = "tanam-apps"
 )
 
 const MaxFileSize = 5 * 1024 * 1024 // 5 MB as an example limit
@@ -39,7 +39,6 @@ func init() {
 		bucketName: BucketName,
 		projectID:  ProjectID,
 	}
-	log.Println("init called")
 }
 
 func getFileSize(file multipart.File) (int64, error) {
@@ -63,7 +62,7 @@ func (c *ClientUploader) UploadFile(ctx context.Context, file multipart.File, ob
 	if fileSize > MaxFileSize {
 		return "", fmt.Errorf("file size exceeds the limit: %v", MaxFileSize)
 	}
-	// Upload an object with storage.Writer.
+
 	wc := c.cl.Bucket(c.bucketName).Object(c.uploadPath + object).NewWriter(ctx)
 	if _, err := io.Copy(wc, file); err != nil {
 		return "", fmt.Errorf("io.Copy: %v", err)
@@ -75,4 +74,13 @@ func (c *ClientUploader) UploadFile(ctx context.Context, file multipart.File, ob
 	uploadedFileURL := fmt.Sprintf("https://storage.googleapis.com/%s/%s%s", c.bucketName, c.uploadPath, object)
 
 	return uploadedFileURL, nil
+}
+
+func (c *ClientUploader) DeleteFileFromGCS(ctx context.Context, object string) error {
+	err := c.cl.Bucket(c.bucketName).Object(c.uploadPath + object).Delete(ctx)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

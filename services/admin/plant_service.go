@@ -1,9 +1,15 @@
 package admin
 
 import (
+	"context"
+	"mime/multipart"
+	"path/filepath"
 	"tanam-backend/domains/web/plant"
 	"tanam-backend/entities"
 	"tanam-backend/repository"
+	"tanam-backend/utils/google"
+
+	"github.com/google/uuid"
 )
 
 type PlantService struct {
@@ -24,7 +30,24 @@ func (service *PlantService) GetAllPlantsService() ([]entities.Plant, error) {
 	return plants, nil
 }
 
-func (service *PlantService) CreatePlantService(createPlantRequest plant.CreatePlantRequest) (entities.Plant, error) {
+func (service *PlantService) CreatePlantService(createPlantRequest plant.CreatePlantRequest, picture []*multipart.FileHeader) (entities.Plant, error) {
+	file, err := picture[0].Open()
+	if err != nil {
+		return entities.Plant{}, err
+	}
+	defer file.Close()
+
+	ext := filepath.Ext(picture[0].Filename)
+
+	ctx := context.Background()
+
+	objectName := uuid.NewString() + ext
+	url, err := google.Upload.UploadFile(ctx, file, objectName)
+	if err != nil {
+		return entities.Plant{}, err
+	}
+
+	createPlantRequest.Picture = url
 	plant, err := service.repository.CreatePlantRepository(createPlantRequest)
 	if err != nil {
 		return plant, err
@@ -49,11 +72,24 @@ func (service *PlantService) EditPlantByIdService(editPlantRequest plant.EditPla
 	return plant, nil
 }
 
-func (service *PlantService) DeletePlantByIdService(plantId string) error {
+func (service *PlantService) DeletePlantByIdService(plantId string) (entities.Plant, error) {
+	ctx := context.Background()
 
-	err := service.repository.DeletePlantByIdRepository(plantId)
+	plant, err := service.repository.GetPlantByIdRepository(plantId)
 	if err != nil {
-		return err
+		return plant, err
 	}
-	return nil
+
+	objectName := filepath.Base(plant.Picture)
+	err = google.Upload.DeleteFileFromGCS(ctx, objectName)
+	if err != nil {
+		return entities.Plant{}, err
+	}
+
+	err = service.repository.DeletePlantByIdRepository(plantId)
+	if err != nil {
+		return entities.Plant{}, err
+	}
+
+	return entities.Plant{}, nil
 }

@@ -32,6 +32,7 @@ func InitRoute(e *echo.Echo) {
 	auth.GET("/profile", authController.ProfileController, middlewares.JWTMiddleware)
 
 	plant := api.Group("")
+	plant.POST("/up", plantController.UploadFileController)
 	plant.GET("/plants", plantController.GetAllPlantController)
 	plant.GET("/plant/:plantId", plantController.GetPlantByPlantIdController)
 

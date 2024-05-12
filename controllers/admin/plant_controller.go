@@ -50,7 +50,7 @@ func (controller *PlantController) CreatePlantController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, response)
 	}
 
-	picture := form.File["picture"]
+	picture := form.File["picture_file"]
 	if len(picture) == 0 {
 		response := response.ErrorFormatter("Gambar Tanaman Tidak Boleh Kosong")
 		return c.JSON(http.StatusBadRequest, response)
@@ -67,15 +67,15 @@ func (controller *PlantController) CreatePlantController(c echo.Context) error {
 		}
 	}
 
-	plant.Picture = picture
-	data, err := controller.service.CreatePlantService(plant)
+	data, err := controller.service.CreatePlantService(plant, picture)
 
 	if err != nil {
 		response := response.ErrorFormatter(err.Error())
 		return c.JSON(http.StatusInternalServerError, response)
 	}
+	response := response.SuccessSingularFormatter("Berhasil Menambahkan Data Tanaman", data)
 
-	return c.JSON(http.StatusOK, data)
+	return c.JSON(http.StatusOK, response)
 }
 
 func (controller *PlantController) GetPlantByPlantIdController(c echo.Context) error {
@@ -113,7 +113,7 @@ func (controller *PlantController) EditPlantByPlantIdController(c echo.Context) 
 
 func (controller *PlantController) DeletePlantByIdController(c echo.Context) error {
 	plantId := c.Param("plantId")
-	err := controller.service.DeletePlantByIdService(plantId)
+	_, err := controller.service.DeletePlantByIdService(plantId)
 
 	if err != nil {
 		response := response.ErrorFormatter(err.Error())

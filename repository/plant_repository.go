@@ -41,7 +41,7 @@ func (p *PlantRepository) CreatePlantRepository(createPlantRequest plant.CreateP
 		Name:        createPlantRequest.Name,
 		Description: createPlantRequest.Description,
 		Price:       createPlantRequest.Price,
-		Picture:     "url", // Set picture URL here
+		Picture:     createPlantRequest.Picture,
 		Status:      "available",
 	}
 
