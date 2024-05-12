@@ -1,48 +1,35 @@
 package middlewares
 
 import (
-	"os"
-	"time"
+	"net/http"
+	"tanam-backend/helpers"
 
-	"github.com/golang-jwt/jwt"
+	"github.com/labstack/echo/v4"
 )
 
-type JWTClaim struct {
-	jwt.StandardClaims
-	Sub   string `json:"sub"`
-	Email string `json:"email"`
+func ExtractTokenFromHeader(authHeader string) string {
+	const bearerPrefix = "Bearer "
+	if len(authHeader) > len(bearerPrefix) && authHeader[:len(bearerPrefix)] == bearerPrefix {
+		return authHeader[len(bearerPrefix):]
+	}
+	return ""
 }
 
-func GenerateTokenJWT(authID string, email string) (string, error) {
-	// Load private key
-	privateKeyFile := "./config/private_key.pem"
-	privateKeyBytes, err := os.ReadFile(privateKeyFile)
-	if err != nil {
-		return "", err
-	}
+func JWTMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		token := ExtractTokenFromHeader(c.Request().Header.Get("Authorization"))
+		if token == "" {
+			return echo.NewHTTPError(http.StatusUnauthorized, "missing or malformed token")
+		}
 
-	privateKey, err := jwt.ParseRSAPrivateKeyFromPEM(privateKeyBytes)
-	if err != nil {
-		return "", err
-	}
-	currentTime := time.Now()
-	expirationTime := currentTime.Add(12 * time.Hour)
+		// Validate token
+		user, err := helpers.ValidateToken(token, c)
+		if err != nil {
+			return echo.NewHTTPError(http.StatusUnauthorized, "invalid token")
+		}
 
-	claims := &JWTClaim{
-		Sub:   authID,
-		Email: email,
-		StandardClaims: jwt.StandardClaims{
-			IssuedAt:  currentTime.Unix(),
-			Issuer:    "https://tanam.id",
-			ExpiresAt: expirationTime.Unix(),
-		},
-	}
+		c.Set("user", user)
 
-	token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
-	TokenString, err := token.SignedString(privateKey)
-	if err != nil {
-		return "", err
+		return next(c)
 	}
-
-	return TokenString, err
 }

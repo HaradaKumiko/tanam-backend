@@ -25,7 +25,8 @@ func InitRoute(e *echo.Echo) {
 
 	auth := api.Group("/auth")
 	auth.POST("/login", authController.LoginController)
-
+	auth.POST("/register", authController.RegisterController)
+	auth.GET("/profile", authController.ProfileController, middlewares.JWTMiddleware)
 
 	plant := api.Group("")
 	plant.GET("/plants", plantController.GetAllPlantController)

@@ -34,7 +34,14 @@ func InitDB() {
 }
 
 func Migrate() {
-	err := DB.AutoMigrate(model.Plant{})
+	models := []interface{}{&model.Plant{}, &model.Auth{}, &model.Biodata{}}
+
+	err := DB.Migrator().DropTable(models...)
+	if err != nil {
+		log.Fatalf("failed to drop tables: %s\n", err)
+	}
+
+	err = DB.AutoMigrate(models...)
 
 	if err != nil {
 		log.Fatalf("failed to perform database migration: %s\n", err)
