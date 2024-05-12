@@ -8,7 +8,7 @@ import (
 
 func GetConfig(key string) string {
 	viper.AddConfigPath(".")
-	viper.SetConfigFile(".env.local")
+	viper.SetConfigFile(".env")
 
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("error when reading configuration file: %s\n", err)

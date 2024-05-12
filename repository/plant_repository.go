@@ -26,6 +26,14 @@ func (p *PlantRepository) GetAllPlantsRepository() ([]entities.Plant, error) {
 	return plants, nil
 }
 
+func (p *PlantRepository) GetAllPlantsAvailableRepository() ([]entities.Plant, error) {
+	var plants []entities.Plant
+	if err := database.DB.Where("status = ?", "available").Find(&plants).Error; err != nil {
+		return nil, err
+	}
+	return plants, nil
+}
+
 func (p *PlantRepository) CreatePlantRepository(createPlantRequest plant.CreatePlantRequest) (entities.Plant, error) {
 
 	newPlant := model.Plant{

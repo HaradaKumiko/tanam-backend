@@ -2,6 +2,7 @@ package routes
 
 import (
 	"tanam-backend/controllers"
+	"tanam-backend/controllers/admin"
 	"tanam-backend/middlewares"
 
 	"github.com/labstack/echo/v4"
@@ -17,6 +18,7 @@ func InitRoute(e *echo.Echo) {
 	e.Use(loggerMiddleware)
 
 	authController := controllers.InitAuthController()
+	adminPlantController := admin.InitPlantController()
 	plantController := controllers.InitPlantController()
 
 	api := e.Group("/api")
@@ -24,11 +26,15 @@ func InitRoute(e *echo.Echo) {
 	auth := api.Group("/auth")
 	auth.POST("/login", authController.LoginController)
 
+
 	plant := api.Group("")
-	plant.POST("/upload", plantController.UploadFileController)
 	plant.GET("/plants", plantController.GetAllPlantController)
-	plant.POST("/plant", plantController.CreatePlantController)
 	plant.GET("/plant/:plantId", plantController.GetPlantByPlantIdController)
-	plant.PUT("/plant/:plantId", plantController.EditPlantByPlantIdController)
-	plant.DELETE("/plant/:plantId", plantController.DeletePlantByIdController)
+
+	admin := api.Group("/admin")
+	admin.GET("/plants", adminPlantController.GetAllPlantController)
+	admin.POST("/plant", adminPlantController.CreatePlantController)
+	admin.GET("/plant/:plantId", adminPlantController.GetPlantByPlantIdController)
+	admin.PUT("/plant/:plantId", adminPlantController.EditPlantByPlantIdController)
+	admin.DELETE("/plant/:plantId", adminPlantController.DeletePlantByIdController)
 }
