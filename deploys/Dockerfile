@@ -17,9 +17,6 @@ COPY . .
 # Copy the key.json file into the container
 COPY utils/google/key.json /app/utils/google/key.json
 
-# Copy the .env file into the container
-COPY .env .
-
 # Build the Go app
 RUN go build -o main .
 
@@ -34,6 +31,7 @@ COPY --from=build /app/main .
 
 # Copy the key.json file into the container
 COPY --from=build /app/utils/google/key.json /root/utils/google/key.json
+COPY --from=build /app/.env /root/.env
 
 # Command to run the executable
 CMD ["./main"]
