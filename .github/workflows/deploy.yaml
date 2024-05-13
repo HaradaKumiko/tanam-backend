@@ -35,9 +35,9 @@ jobs:
             cd deploys
             docker compose down
             cd .. 
-            docker image rm puskomjar-backend-talenta:latest
+            docker image rm haradakumiko/tanam-backend:latest
             docker volume prune
-            docker build -t puskomjar-backend-talenta:latest --no-cache -f deploys/Dockerfile . 
+            docker build -t haradakumiko/tanam-backend:latest --no-cache -f deploys/Dockerfile . 
             docker builder prune
             cd deploys 
             docker compose up -d
