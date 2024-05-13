@@ -37,7 +37,7 @@ jobs:
             cd .. 
             docker image rm haradakumiko/tanam-backend:latest
             docker volume prune
-            docker build -t haradakumiko/tanam-backend:latest --no-cache -f deploys/Dockerfile . 
+            docker build -t haradakumiko/tanam-backend:latest --pull=false --no-cache -f deploys/Dockerfile . 
             docker builder prune
             cd deploys 
             docker compose up -d
