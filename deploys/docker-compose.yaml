@@ -10,8 +10,8 @@ services:
 
   app:
     image: haradakumiko/tanam-backend:latest
-    restart: always
     depends_on:
        - database-alterra
     ports:
       - "1323:1323/tcp"
+    restart: always

@@ -13,10 +13,6 @@ RUN go mod download
 
 # Copy the rest of the application source code to the container
 COPY . .
-
-# Copy the key.json file into the container
-COPY utils/google/key.json /app/utils/google/key.json
-
 # Build the Go app
 RUN go build -o main .
 
@@ -29,8 +25,10 @@ WORKDIR /root
 # Copy the compiled executable from the previous stage
 COPY --from=build /app/main .
 
-# Copy the key.json file into the container
+# Copy the important file into the container
 COPY --from=build /app/utils/google/key.json /root/utils/google/key.json
+COPY --from=build /app/config/private_key.pem /root/config/private_key.pem
+COPY --from=build /app/config/public_key.pem /root/config/public_key.pem
 COPY --from=build /app/.env /root/.env
 
 # Command to run the executable
