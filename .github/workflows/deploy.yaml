@@ -23,7 +23,7 @@ jobs:
             cd /home/tanam-backend
             git pull origin main
             cp .env.local .env
-            sed -i "s/DB_HOST=.*/DB_HOST=\"${{secrets.HOST}}\"/" .env
+            sed -i "s/DB_HOST=.*/DB_HOST=\"${{secrets.DB_HOST}}\"/" .env
             sed -i "s/DB_PORT=.*/DB_PORT=\"${{secrets.DB_PORT}}\"/" .env
             sed -i "s/DB_USERNAME=.*/DB_USERNAME=\"${{secrets.USERNAME}}\"/" .env
             sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=\"${{secrets.DB_PASSWORD}}\"/" .env
