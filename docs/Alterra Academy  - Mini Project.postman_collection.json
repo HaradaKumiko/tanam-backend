@@ -1,0 +1,1507 @@
+{
+	"info": {
+		"_postman_id": "d59737da-0a61-468a-8d5f-d89b131bc87b",
+		"name": "Alterra Academy  - Mini Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15845543",
+		"_collection_link": "https://grey-moon-334739.postman.co/workspace/OCTOPUS-LABS~43baad5d-bba7-4fe1-86f7-e981d16e98a9/collection/15845543-d59737da-0a61-468a-8d5f-d89b131bc87b?action=share&source=collection_link&creator=15845543"
+	},
+	"item": [
+		{
+			"name": "Seeder",
+			"item": [
+				{
+					"name": "Seeder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/seed",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"seed"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Seeder Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/seed",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"seed"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Seeder executed successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res =  pm.response.json();\r",
+									"pm.environment.set('authToken', res.data);                                                           "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"fariv.fariv122@gmail.com\",\r\n    \"password\": \"password123\",\r\n    \"full_name\": \"Farhan Rivaldy\",\r\n    \"phone_number\": \"089608080808\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"fariv.fariv122@gmail.com\",\r\n    \"password\": \"password123\",\r\n    \"full_name\": \"Farhan Rivaldy\",\r\n    \"phone_number\": \"089608080808\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"info\": {\n        \"message\": \"Berhasil Registrasi\",\n        \"success\": true\n    },\n    \"data\": {\n        \"auth_id\": \"23110f45-3438-407b-8a7e-05a8f7b96590\",\n        \"email\": \"fariv.fariv122@gmail.com\",\n        \"password\": \"$2a$14$kYhFjTAG1KhkBWFO5SCb8OWRg2VPr7OVudRX3jo0Txd5101Ipav1y\",\n        \"profile\": \"https://avatars.githubusercontent.com/u/42530587\",\n        \"created_at\": \"2024-05-13T07:40:06.247+08:00\",\n        \"updated_at\": \"2024-05-13T07:40:06.247+08:00\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res =  pm.response.json();\r",
+									"pm.environment.set('authToken', res.data);                                                           "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin.tanam@gmail.com\",\r\n    \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"fariv.fariv122@gmail.com\",\r\n    \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"info\": {\n        \"message\": \"Berhasil Login\",\n        \"success\": true\n    },\n    \"data\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTU2MDA0NTgsImlhdCI6MTcxNTU1NzI1OCwiaXNzIjoiaHR0cHM6Ly90YW5hbS5pZCIsInN1YiI6IjIzMTEwZjQ1LTM0MzgtNDA3Yi04YTdlLTA1YThmN2I5NjU5MCIsImVtYWlsIjoiZmFyaXYuZmFyaXYxMjJAZ21haWwuY29tIn0.WEfdh8jzutskWh_4hUU9c_xqeX1w8heumsXhSDHAp8LcoByPgyD7NwnNk4ammzV1neQh3ocOjp4E51R3bJJGXM5kV6y4FmBakP4RUqbFizNeTZfIav6BGnJVFYxIZCco5fQdi2J5qpaPyD6OOr6bBD3N5e8aJTuR1oOh09lJkCc\"\n}"
+						},
+						{
+							"name": "Login Failed - Email Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"admin.tanam22@gmail.com\",\r\n    \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"info\": {\n        \"message\": \"email tidak ditemukan\",\n        \"success\": false\n    },\n    \"data\": null\n}"
+						},
+						{
+							"name": "Login Failed - Wrong Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"admin.tanam22@gmail.com\",\r\n    \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"info\": {\n        \"message\": \"password salah\",\n        \"success\": false\n    },\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Profile Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTU2MDA0NTgsImlhdCI6MTcxNTU1NzI1OCwiaXNzIjoiaHR0cHM6Ly90YW5hbS5pZCIsInN1YiI6IjIzMTEwZjQ1LTM0MzgtNDA3Yi04YTdlLTA1YThmN2I5NjU5MCIsImVtYWlsIjoiZmFyaXYuZmFyaXYxMjJAZ21haWwuY29tIn0.WEfdh8jzutskWh_4hUU9c_xqeX1w8heumsXhSDHAp8LcoByPgyD7NwnNk4ammzV1neQh3ocOjp4E51R3bJJGXM5kV6y4FmBakP4RUqbFizNeTZfIav6BGnJVFYxIZCco5fQdi2J5qpaPyD6OOr6bBD3N5e8aJTuR1oOh09lJkCc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/auth/profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"info\": {\n        \"message\": \"Data Profil\",\n        \"success\": true\n    },\n    \"data\": {\n        \"auth_id\": \"23110f45-3438-407b-8a7e-05a8f7b96590\",\n        \"email\": \"fariv.fariv122@gmail.com\",\n        \"password\": \"$2a$14$kYhFjTAG1KhkBWFO5SCb8OWRg2VPr7OVudRX3jo0Txd5101Ipav1y\",\n        \"profile\": \"https://avatars.githubusercontent.com/u/42530587\",\n        \"created_at\": \"2024-05-13T07:40:06.247+08:00\",\n        \"updated_at\": \"2024-05-13T07:40:06.247+08:00\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Plant",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Get All Plants",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/plants",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"plants"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get All Plants",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/plants",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"plants"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Data Semua Tanaman\",\n        \"success\": true\n    },\n    \"data\": [\n        {\n            \"plant_id\": \"17cc2907-e016-44cc-9ae7-686227842594\",\n            \"name\": \"Pohon Mahoni\",\n            \"description\": \"Pohon mahoni adalah jenis pohon berdaun gugur yang berasal dari Amerika Tengah dan Selatan. Kayunya sering digunakan dalam industri kayu karena keindahan dan kekuatannya\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/mahoni.jpg\",\n            \"price\": 40000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T08:01:04.222+08:00\",\n            \"updated_at\": \"2024-05-13T08:01:04.222+08:00\"\n        },\n        {\n            \"plant_id\": \"76d5126f-6179-4583-846f-96a3144bc740\",\n            \"name\": \"Pohon Gaharu\",\n            \"description\": \"Pohon gaharu dikenal karena kayunya yang beraroma harum dan sering digunakan dalam pembuatan minyak gaharu. Tumbuhan ini umumnya ditemukan di hutan tropis\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/gaharu.jpg\",\n            \"price\": 65000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T08:01:04.222+08:00\",\n            \"updated_at\": \"2024-05-13T08:01:04.222+08:00\"\n        },\n        {\n            \"plant_id\": \"7a24b815-accd-4e54-84db-e2acbea80da0\",\n            \"name\": \"Pohon Beringin\",\n            \"description\": \"Pohon beringin adalah jenis pohon besar yang sering dianggap sebagai simbol kekuatan dan ketahanan. Tumbuhan ini memiliki daun hijau lebat dan akar udara yang unik\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/beringin.jpg\",\n            \"price\": 15000,\n            \"status\": \"unavailable\",\n            \"created_at\": \"2024-05-13T08:01:04.222+08:00\",\n            \"updated_at\": \"2024-05-13T08:01:04.222+08:00\"\n        },\n        {\n            \"plant_id\": \"a76af044-95c4-411a-9435-ae54990f0098\",\n            \"name\": \"Pohon Sakura\",\n            \"description\": \"Pohon sakura, juga dikenal sebagai ceri Jepang, adalah salah satu simbol musim semi di Jepang. Bunga-bunga berwarna merah muda yang indah mekar setiap musim semi\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/sakura.jpg\",\n            \"price\": 80000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T08:01:04.222+08:00\",\n            \"updated_at\": \"2024-05-13T08:01:04.222+08:00\"\n        },\n        {\n            \"plant_id\": \"a8a189d9-1ff3-4fd3-b098-2a27687b8b24\",\n            \"name\": \"Pohon Pinus\",\n            \"description\": \"Pohon pinus adalah jenis pohon konifera yang umumnya memiliki jarum hijau yang tajam. Kayunya sering digunakan dalam pembuatan furnitur dan konstruksi\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/pinus.jpg\",\n            \"price\": 15000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T08:01:04.222+08:00\",\n            \"updated_at\": \"2024-05-13T08:01:04.222+08:00\"\n        },\n        {\n            \"plant_id\": \"bbb9ebfa-3d3c-4195-8760-3b921ba2b27b\",\n            \"name\": \"Pohon Jati\",\n            \"description\": \"Pohon jati merupakan salah satu jenis pohon kayu yang banyak dimanfaatkan dalam industri perkayuan. Tumbuhan ini tahan terhadap serangan hama dan penyakit\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/jati.jpg\",\n            \"price\": 75000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T08:01:04.222+08:00\",\n            \"updated_at\": \"2024-05-13T08:01:04.222+08:00\"\n        },\n        {\n            \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n            \"name\": \"Pohon Bambu\",\n            \"description\": \"Pohon bambu merupakan tumbuhan berkayu yang memiliki batang yang keras dan seratnya kuat. Tumbuhan ini dapat tumbuh dengan cepat dan cocok untuk program reboisasi\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/bambu.jpg\",\n            \"price\": 15000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T08:01:04.222+08:00\",\n            \"updated_at\": \"2024-05-13T08:01:04.222+08:00\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "Get All Plants Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/plants",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"plants"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Data Tanaman Tidak Ditemukan\",\n        \"success\": false\n    },\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Create Plant",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "pohon mangrove bakau",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "pohon untuk menahan abrasi",
+											"type": "text"
+										},
+										{
+											"key": "picture_file",
+											"type": "file",
+											"src": "postman-cloud:///1ef100cb-ca24-4da0-b18d-9aa52306c287"
+										},
+										{
+											"key": "price",
+											"value": "35000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/plant",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"plant"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Plant",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "pohon mangrove bakau",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "pohon untuk menahan abrasi",
+													"type": "text"
+												},
+												{
+													"key": "picture_file",
+													"type": "file",
+													"src": "postman-cloud:///1ef100cb-ca24-4da0-b18d-9aa52306c287"
+												},
+												{
+													"key": "price",
+													"value": "35000",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/plant",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"plant"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Berhasil Menambahkan Data Tanaman\",\n        \"success\": true\n    },\n    \"data\": {\n        \"plant_id\": \"d1c647c4-c2db-4b16-af13-ee1c8b99b461\",\n        \"name\": \"pohon mangrove bakau\",\n        \"description\": \"pohon untuk menahan abrasi\",\n        \"picture\": \"https://storage.googleapis.com/tanam-apps/41cb3ac4-9cf6-4e2c-88cf-d16417d0ca05.jpg\",\n        \"price\": 35000,\n        \"status\": \"available\",\n        \"created_at\": \"2024-05-13T07:55:23.921+08:00\",\n        \"updated_at\": \"2024-05-13T07:55:23.921+08:00\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Get Plant By PlantID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/plant/d1c647c4-c2db-4b16-af13-ee1c8b99b461",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"plant",
+										"d1c647c4-c2db-4b16-af13-ee1c8b99b461"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Plant By PlantID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/plant/8bf75a07-a072-4791-8782-cc0ff6164dd1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"plant",
+												"8bf75a07-a072-4791-8782-cc0ff6164dd1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Data Tanaman\",\n        \"success\": true\n    },\n    \"data\": {\n        \"plant_id\": \"d1c647c4-c2db-4b16-af13-ee1c8b99b461\",\n        \"name\": \"pohon mangrove bakau\",\n        \"description\": \"pohon untuk menahan abrasi\",\n        \"picture\": \"https://storage.googleapis.com/tanam-apps/41cb3ac4-9cf6-4e2c-88cf-d16417d0ca05.jpg\",\n        \"price\": 35000,\n        \"status\": \"available\",\n        \"created_at\": \"2024-05-13T07:55:23.921+08:00\",\n        \"updated_at\": \"2024-05-13T07:55:23.921+08:00\"\n    }\n}"
+								},
+								{
+									"name": "Get Plant By PlantID Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/plant/8bf75a07-a072-4791-8782-cc0ff6164dd1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"plant",
+												"8bf75a07-a072-4791-8782-cc0ff6164dd1"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"plant not found\",\n        \"success\": false\n    },\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Edit Plant By PlantID",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "pohon bakau",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "pohon untuk menahan abrasi di pantai",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "unavailable",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "25000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/plant/d1c647c4-c2db-4b16-af13-ee1c8b99b461",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"plant",
+										"d1c647c4-c2db-4b16-af13-ee1c8b99b461"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Edit Plant By PlantID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "pohon bakau",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "pohon untuk menahan abrasi di pantai",
+													"type": "text"
+												},
+												{
+													"key": "status",
+													"value": "unavailable",
+													"type": "text"
+												},
+												{
+													"key": "price",
+													"value": "25000",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/plant/d1c647c4-c2db-4b16-af13-ee1c8b99b461",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"plant",
+												"d1c647c4-c2db-4b16-af13-ee1c8b99b461"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Berhasil Edit Data Tanaman\",\n        \"success\": true\n    },\n    \"data\": {\n        \"plant_id\": \"d1c647c4-c2db-4b16-af13-ee1c8b99b461\",\n        \"name\": \"pohon bakau\",\n        \"description\": \"pohon untuk menahan abrasi di pantai\",\n        \"picture\": \"\",\n        \"price\": 25000,\n        \"status\": \"\",\n        \"created_at\": \"0001-01-01T00:00:00Z\",\n        \"updated_at\": \"0001-01-01T00:00:00Z\"\n    }\n}"
+								},
+								{
+									"name": "Edit Plant By PlantID Not Found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "pohon bakau",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "pohon untuk menahan abrasi di pantai",
+													"type": "text"
+												},
+												{
+													"key": "status",
+													"value": "unavailable",
+													"type": "text"
+												},
+												{
+													"key": "price",
+													"value": "25000",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/plant/d1c647c4-c2db-4b16-af13-ee1c8b99b461",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"plant",
+												"d1c647c4-c2db-4b16-af13-ee1c8b99b461"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"record not found\",\n        \"success\": false\n    },\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Plant By PlantID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/plant/d1c647c4-c2db-4b16-af13-ee1c8b99b461",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"plant",
+										"d1c647c4-c2db-4b16-af13-ee1c8b99b461"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete Plant By PlantID",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/plant/d1c647c4-c2db-4b16-af13-ee1c8b99b461",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"plant",
+												"d1c647c4-c2db-4b16-af13-ee1c8b99b461"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Berhasil Hapus Data Tanaman\",\n        \"success\": true\n    },\n    \"data\": null\n}"
+								},
+								{
+									"name": "Delete Plant By PlantID Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/plant/d1c647c4-c2db-4b16-af13-ee1c8b99b462",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"plant",
+												"d1c647c4-c2db-4b16-af13-ee1c8b99b462"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"plant not found\",\n        \"success\": false\n    },\n    \"data\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Donor",
+					"item": [
+						{
+							"name": "Get Plant By PlantID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/plant/e66eaa6f-7f7a-481e-901a-752635b88b04",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"plant",
+										"e66eaa6f-7f7a-481e-901a-752635b88b04"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Plant By PlantID Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/plant/e66eaa6f-7f7a-481e-901a-752635b88b06",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"plant",
+												"e66eaa6f-7f7a-481e-901a-752635b88b06"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Data Tanaman\",\n        \"success\": true\n    },\n    \"data\": {\n        \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n        \"name\": \"Pohon Bambu\",\n        \"description\": \"Pohon bambu merupakan tumbuhan berkayu yang memiliki batang yang keras dan seratnya kuat. Tumbuhan ini dapat tumbuh dengan cepat dan cocok untuk program reboisasi\",\n        \"picture\": \"https://storage.googleapis.com/tanam-apps/bambu.jpg\",\n        \"price\": 15000,\n        \"status\": \"available\",\n        \"created_at\": \"2024-05-13T07:39:09.318+08:00\",\n        \"updated_at\": \"2024-05-13T07:39:09.318+08:00\"\n    }\n}"
+								},
+								{
+									"name": "Get Plant By PlantID Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/plant/e66eaa6f-7f7a-481e-901a-752635b88b06",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"plant",
+												"e66eaa6f-7f7a-481e-901a-752635b88b06"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"plant not found\",\n        \"success\": false\n    },\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Get All Plants",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/plants",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"plants"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get All Plants Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/plants",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"plants"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Data Semua Tanaman\",\n        \"success\": true\n    },\n    \"data\": [\n        {\n            \"plant_id\": \"17cc2907-e016-44cc-9ae7-686227842594\",\n            \"name\": \"Pohon Mahoni\",\n            \"description\": \"Pohon mahoni adalah jenis pohon berdaun gugur yang berasal dari Amerika Tengah dan Selatan. Kayunya sering digunakan dalam industri kayu karena keindahan dan kekuatannya\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/mahoni.jpg\",\n            \"price\": 40000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T07:39:09.318+08:00\",\n            \"updated_at\": \"2024-05-13T07:39:09.318+08:00\"\n        },\n        {\n            \"plant_id\": \"76d5126f-6179-4583-846f-96a3144bc740\",\n            \"name\": \"Pohon Gaharu\",\n            \"description\": \"Pohon gaharu dikenal karena kayunya yang beraroma harum dan sering digunakan dalam pembuatan minyak gaharu. Tumbuhan ini umumnya ditemukan di hutan tropis\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/gaharu.jpg\",\n            \"price\": 65000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T07:39:09.318+08:00\",\n            \"updated_at\": \"2024-05-13T07:39:09.318+08:00\"\n        },\n        {\n            \"plant_id\": \"a76af044-95c4-411a-9435-ae54990f0098\",\n            \"name\": \"Pohon Sakura\",\n            \"description\": \"Pohon sakura, juga dikenal sebagai ceri Jepang, adalah salah satu simbol musim semi di Jepang. Bunga-bunga berwarna merah muda yang indah mekar setiap musim semi\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/sakura.jpg\",\n            \"price\": 80000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T07:39:09.318+08:00\",\n            \"updated_at\": \"2024-05-13T07:39:09.318+08:00\"\n        },\n        {\n            \"plant_id\": \"a8a189d9-1ff3-4fd3-b098-2a27687b8b24\",\n            \"name\": \"Pohon Pinus\",\n            \"description\": \"Pohon pinus adalah jenis pohon konifera yang umumnya memiliki jarum hijau yang tajam. Kayunya sering digunakan dalam pembuatan furnitur dan konstruksi\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/pinus.jpg\",\n            \"price\": 15000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T07:39:09.318+08:00\",\n            \"updated_at\": \"2024-05-13T07:39:09.318+08:00\"\n        },\n        {\n            \"plant_id\": \"bbb9ebfa-3d3c-4195-8760-3b921ba2b27b\",\n            \"name\": \"Pohon Jati\",\n            \"description\": \"Pohon jati merupakan salah satu jenis pohon kayu yang banyak dimanfaatkan dalam industri perkayuan. Tumbuhan ini tahan terhadap serangan hama dan penyakit\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/jati.jpg\",\n            \"price\": 75000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T07:39:09.318+08:00\",\n            \"updated_at\": \"2024-05-13T07:39:09.318+08:00\"\n        },\n        {\n            \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n            \"name\": \"Pohon Bambu\",\n            \"description\": \"Pohon bambu merupakan tumbuhan berkayu yang memiliki batang yang keras dan seratnya kuat. Tumbuhan ini dapat tumbuh dengan cepat dan cocok untuk program reboisasi\",\n            \"picture\": \"https://storage.googleapis.com/tanam-apps/bambu.jpg\",\n            \"price\": 15000,\n            \"status\": \"available\",\n            \"created_at\": \"2024-05-13T07:39:09.318+08:00\",\n            \"updated_at\": \"2024-05-13T07:39:09.318+08:00\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "Get All Plants Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/plants",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"plants"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Data Tanaman Tidak Ditemukan\",\n        \"success\": false\n    },\n    \"data\": null\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Get All Order",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n    \"quantity\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/orders",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"orders"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get All Order",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n    \"quantity\": 2\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/orders",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"orders"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Get Order By OrderID",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n    \"quantity\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/order/e5284363-f53f-4110-89f2-7f006e824dd3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"order",
+										"e5284363-f53f-4110-89f2-7f006e824dd3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Order By OrderID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n    \"quantity\": 2\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/order/e5284363-f53f-4110-89f2-7f006e824dd3",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"order",
+												"e5284363-f53f-4110-89f2-7f006e824dd3"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Donor",
+					"item": [
+						{
+							"name": "Create New Order",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n    \"quantity\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/order",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"order"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create New Order Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n    \"quantity\": 2\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/order",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"order"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Berhasil Order\",\n        \"success\": true\n    },\n    \"data\": {\n        \"order_id\": \"451ab354-676d-41a7-80b8-dce66a2ebca7\",\n        \"auth_id\": \"23110f45-3438-407b-8a7e-05a8f7b96590\",\n        \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n        \"qty\": 2,\n        \"base_price\": 15000,\n        \"total_price\": 30000,\n        \"payment_type\": \"\",\n        \"token\": \"089f8fbb-f93b-4157-87ce-e6caa2f87e61\",\n        \"redirect_url\": \"https://app.sandbox.midtrans.com/snap/v4/redirection/089f8fbb-f93b-4157-87ce-e6caa2f87e61\",\n        \"transaction_status\": \"\",\n        \"created_at\": \"2024-05-13T07:46:19.035+08:00\",\n        \"updated_at\": \"2024-05-13T07:46:19.035+08:00\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Get Order Donor",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n    \"quantity\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/order/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"order",
+										"user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Order Donor Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTU2MDA0NTgsImlhdCI6MTcxNTU1NzI1OCwiaXNzIjoiaHR0cHM6Ly90YW5hbS5pZCIsInN1YiI6IjIzMTEwZjQ1LTM0MzgtNDA3Yi04YTdlLTA1YThmN2I5NjU5MCIsImVtYWlsIjoiZmFyaXYuZmFyaXYxMjJAZ21haWwuY29tIn0.WEfdh8jzutskWh_4hUU9c_xqeX1w8heumsXhSDHAp8LcoByPgyD7NwnNk4ammzV1neQh3ocOjp4E51R3bJJGXM5kV6y4FmBakP4RUqbFizNeTZfIav6BGnJVFYxIZCco5fQdi2J5qpaPyD6OOr6bBD3N5e8aJTuR1oOh09lJkCc",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n    \"quantity\": 2\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/order/user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"order",
+												"user"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Data Semua Order Pengguna\",\n        \"success\": true\n    },\n    \"data\": [\n        {\n            \"order_id\": \"451ab354-676d-41a7-80b8-dce66a2ebca7\",\n            \"auth_id\": \"23110f45-3438-407b-8a7e-05a8f7b96590\",\n            \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n            \"qty\": 2,\n            \"base_price\": 15000,\n            \"total_price\": 30000,\n            \"payment_type\": \"\",\n            \"token\": \"089f8fbb-f93b-4157-87ce-e6caa2f87e61\",\n            \"redirect_url\": \"https://app.sandbox.midtrans.com/snap/v4/redirection/089f8fbb-f93b-4157-87ce-e6caa2f87e61\",\n            \"transaction_status\": \"pending\",\n            \"created_at\": \"2024-05-13T07:46:19.035+08:00\",\n            \"updated_at\": \"2024-05-13T07:46:19.035+08:00\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Get Order By OrderID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/order/451ab354-676d-41a7-80b8-dce66a2ebca9",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"order",
+										"451ab354-676d-41a7-80b8-dce66a2ebca9"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Order By OrderID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTU2MDA0NTgsImlhdCI6MTcxNTU1NzI1OCwiaXNzIjoiaHR0cHM6Ly90YW5hbS5pZCIsInN1YiI6IjIzMTEwZjQ1LTM0MzgtNDA3Yi04YTdlLTA1YThmN2I5NjU5MCIsImVtYWlsIjoiZmFyaXYuZmFyaXYxMjJAZ21haWwuY29tIn0.WEfdh8jzutskWh_4hUU9c_xqeX1w8heumsXhSDHAp8LcoByPgyD7NwnNk4ammzV1neQh3ocOjp4E51R3bJJGXM5kV6y4FmBakP4RUqbFizNeTZfIav6BGnJVFYxIZCco5fQdi2J5qpaPyD6OOr6bBD3N5e8aJTuR1oOh09lJkCc",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/order/451ab354-676d-41a7-80b8-dce66a2ebca7",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"order",
+												"451ab354-676d-41a7-80b8-dce66a2ebca7"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"Data Order\",\n        \"success\": true\n    },\n    \"data\": {\n        \"order_id\": \"451ab354-676d-41a7-80b8-dce66a2ebca7\",\n        \"auth_id\": \"23110f45-3438-407b-8a7e-05a8f7b96590\",\n        \"plant_id\": \"e66eaa6f-7f7a-481e-901a-752635b88b06\",\n        \"qty\": 2,\n        \"base_price\": 15000,\n        \"total_price\": 30000,\n        \"payment_type\": \"\",\n        \"token\": \"089f8fbb-f93b-4157-87ce-e6caa2f87e61\",\n        \"redirect_url\": \"https://app.sandbox.midtrans.com/snap/v4/redirection/089f8fbb-f93b-4157-87ce-e6caa2f87e61\",\n        \"transaction_status\": \"pending\",\n        \"created_at\": \"2024-05-13T07:46:19.035+08:00\",\n        \"updated_at\": \"2024-05-13T07:46:19.035+08:00\"\n    }\n}"
+								},
+								{
+									"name": "Get Order By OrderID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTU2MDA0NTgsImlhdCI6MTcxNTU1NzI1OCwiaXNzIjoiaHR0cHM6Ly90YW5hbS5pZCIsInN1YiI6IjIzMTEwZjQ1LTM0MzgtNDA3Yi04YTdlLTA1YThmN2I5NjU5MCIsImVtYWlsIjoiZmFyaXYuZmFyaXYxMjJAZ21haWwuY29tIn0.WEfdh8jzutskWh_4hUU9c_xqeX1w8heumsXhSDHAp8LcoByPgyD7NwnNk4ammzV1neQh3ocOjp4E51R3bJJGXM5kV6y4FmBakP4RUqbFizNeTZfIav6BGnJVFYxIZCco5fQdi2J5qpaPyD6OOr6bBD3N5e8aJTuR1oOh09lJkCc",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/order/451ab354-676d-41a7-80b8-dce66a2ebca9",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"order",
+												"451ab354-676d-41a7-80b8-dce66a2ebca9"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"info\": {\n        \"message\": \"order not found\",\n        \"success\": false\n    },\n    \"data\": null\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
