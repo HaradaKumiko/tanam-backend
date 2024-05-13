@@ -1,6 +1,6 @@
 services:
 
-  database:
+  database-alterra:
     image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=Alterra@miniPR0ject#@!
@@ -12,6 +12,6 @@ services:
     image: haradakumiko/tanam-backend:latest
     restart: always
     depends_on:
-       - database
+       - database-alterra
     ports:
       - "1323:1323/tcp"
